@@ -10,6 +10,8 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "strict": false,
+    "types": ["node", "jquery", "luxon"],
     "paths": {
       "@bus/*": ["../odoo/addons/bus/static/src/*"],
       "@html_editor/*": ["../odoo/addons/html_editor/static/src/*"],
