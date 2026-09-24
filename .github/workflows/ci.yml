@@ -1,0 +1,238 @@
+name: CI
+run-name: >-
+  CI / ${{ github.event_name == 'pull_request' && format('PR #{0}',
+  github.event.pull_request.number) || github.ref_name }}
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  static_analysis:
+    name: JavaScript / ${{ matrix.check.name }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        check:
+          - name: Format
+            script: format:check
+          - name: Lint
+            script: lint
+          - name: Typecheck
+            script: typecheck
+          - name: Test report script
+            script: test:report-script
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v5
+        with:
+          version: 10.33.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Sync Odoo upstream types
+        run: pnpm run sync:odoo-types
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: ${{ matrix.check.name }}
+        env:
+          PNPM_SCRIPT: ${{ matrix.check.script }}
+        run: pnpm run "$PNPM_SCRIPT"
+
+  python_static_analysis:
+    name: Python / ${{ matrix.check.name }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        check:
+          - name: Ruff Format
+            command: pnpm run format:python:check
+          - name: Ruff Lint
+            command: pnpm run lint:python
+          - name: Odoo Module Checks
+            command: python -m pre_commit run --all-files oca-checks-odoo-module
+          - name: Translation Checks
+            command: python -m pre_commit run --all-files oca-checks-po
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Python
+        # .python-version names a local pyenv environment; CI pins the interpreter.
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v5
+        with:
+          version: 10.33.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Install Python quality tools
+        run: python -m pip install pre-commit==4.6.0 ruff==0.14.2
+
+      - name: Install pnpm dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: ${{ matrix.check.name }}
+        env:
+          CHECK_COMMAND: ${{ matrix.check.command }}
+        run: $CHECK_COMMAND
+
+  generated_readme:
+    name: Generated README
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v5
+        with:
+          version: 10.33.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Read pandoc version
+        id: pandoc
+        run: |
+          printf 'version=%s\n' "$(node -p 'require("./package.json").config.pandocVersion')" >> "$GITHUB_OUTPUT"
+
+      - name: Install pandoc
+        shell: bash
+        env:
+          PANDOC_VERSION: ${{ steps.pandoc.outputs.version }}
+        run: |
+          set -euo pipefail
+          case "$(uname -m)" in
+            x86_64) pandoc_arch=amd64 ;;
+            aarch64 | arm64) pandoc_arch=arm64 ;;
+            *)
+              echo "Unsupported runner architecture: $(uname -m)" >&2
+              exit 1
+              ;;
+          esac
+          archive="${RUNNER_TEMP}/pandoc-${PANDOC_VERSION}.tar.gz"
+          curl --fail --location --silent --show-error --retry 3 \
+            --output "${archive}" \
+            "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux-${pandoc_arch}.tar.gz"
+          tar --extract --gzip --file "${archive}" --directory "${RUNNER_TEMP}"
+          printf '%s\n' "${RUNNER_TEMP}/pandoc-${PANDOC_VERSION}/bin" >> "${GITHUB_PATH}"
+
+      - name: Install OCA maintainer tools
+        # OCA does not publish to PyPI; install from git at a pinned SHA — bump deliberately.
+        run:
+          python -m pip install
+          "git+https://github.com/OCA/maintainer-tools.git@d4657f8c17a576d0c56c68064e199545ee75db52"
+
+      - name: Install pnpm dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generated README drift check
+        run: pnpm run gen:readme:check
+
+  odoo_tests:
+    name: Odoo tests
+    needs:
+      - static_analysis
+      - python_static_analysis
+      - generated_readme
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      ODOO_WORKTREE_NAME: ci-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v5
+        with:
+          version: 10.33.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Prepare Odoo test stack
+        id: prepare_stack
+        run: pnpm exec oad setup --skip-install
+
+      - name: Prepare test report directory
+        # The container's odoo user writes JUnit XML through the addons bind mount.
+        run: mkdir -p addons/test_results && chmod 0777 addons/test_results
+
+      - name: Run addon tests
+        shell: bash
+        run: |
+          set +e
+          pnpm test:odoo > /tmp/odoo-test.log 2>&1
+          odoo_status=$?
+          set -e
+          cat /tmp/odoo-test.log
+          test "${odoo_status}" -eq 0
+          # oad can exit 0 on failures, and a run of 0 tests is not a pass.
+          grep -Eq "odoo.tests.result: 0 failed, 0 error\\(s\\) of [1-9][0-9]* tests" /tmp/odoo-test.log
+
+      - name: Test report summary
+        if: always()
+        run: node scripts/odoo-test-report.mjs
+
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: addons/test_results/*.xml
+          if-no-files-found: warn
+
+      - name: Tear down Odoo test stack
+        if: ${{ always() && steps.prepare_stack.outcome != 'skipped' }}
+        run: pnpm exec oad down --volumes

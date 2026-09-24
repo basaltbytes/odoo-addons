@@ -1,0 +1,57 @@
+{
+  "name": "@basaltbytes/odoo-addons-tooling",
+  "private": true,
+  "description": "Tooling for the basaltbytes Odoo 19 addons: oxlint, oxfmt, ruff, pre-commit, TypeScript checkJs, OCA README generation, and oad-driven Odoo/Hoot tests.",
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": "^22.22.2 || >=24.15.0"
+  },
+  "config": {
+    "pandocVersion": "3.9.0.2"
+  },
+  "scripts": {
+    "setup": "node ./scripts/setup.mjs",
+    "doctor": "node ./scripts/doctor.mjs",
+    "dev": "oad up",
+    "dev:info": "oad info",
+    "dev:setup": "oad setup",
+    "dev:down": "oad down",
+    "dev:reset-db": "oad reset-db",
+    "odoo:u": "oad update",
+    "test:odoo": "oad test --profile runtime",
+    "test:hoot": "oad test --profile hoot",
+    "test:report": "node scripts/odoo-test-report.mjs",
+    "test:report-script": "node --test scripts/test-odoo-test-report.mjs",
+    "format": "oxfmt .github AGENTS.md CHANGELOG.md CONTRIBUTING.md README.md addons odoo-agentic-dev.config.ts package.json scaffold-template scripts tsconfig.json tsconfig.typecheck.json types .oxfmtrc.json .oxlintrc.json",
+    "format:check": "oxfmt --check .github AGENTS.md CHANGELOG.md CONTRIBUTING.md README.md addons odoo-agentic-dev.config.ts package.json scaffold-template scripts tsconfig.json tsconfig.typecheck.json types .oxfmtrc.json .oxlintrc.json",
+    "format:python": "python -m ruff format addons",
+    "format:python:check": "python -m ruff format --check addons",
+    "lint": "oxlint addons scripts odoo-agentic-dev.config.ts",
+    "lint:fix": "pnpm run lint -- --fix",
+    "lint:python": "python -m ruff check addons",
+    "lint:python:fix": "pnpm run lint:python -- --fix",
+    "hooks:check": "node scripts/run-pre-commit.mjs run --all-files",
+    "hooks:install": "node scripts/install-pre-commit-hook.mjs",
+    "lint:python:pylint": "node scripts/run-pre-commit.mjs run --all-files --hook-stage manual pylint_odoo",
+    "check:pandoc": "node scripts/check-pandoc-version.mjs",
+    "gen:readme": "pnpm run check:pandoc && node scripts/gen-addon-readmes.mjs",
+    "gen:readme:check": "pnpm run gen:readme && git diff --exit-code -- 'addons/*/README.rst' 'addons/*/static/description/index.html'",
+    "i18n:format": "node scripts/run-pre-commit.mjs run --all-files oca-checks-po",
+    "i18n:update": "node scripts/update-odoo-i18n.mjs",
+    "setup:git": "node scripts/setup-git-merge-drivers.mjs",
+    "prepare": "node scripts/setup-git-merge-drivers.mjs",
+    "sync:odoo-types": "node ./scripts/sync-odoo-types.mjs",
+    "sync:odoo-types:refresh": "node ./scripts/sync-odoo-types.mjs --refresh",
+    "typecheck": "tsc -p tsconfig.typecheck.json"
+  },
+  "devDependencies": {
+    "@basaltbytes/odoo-agentic-dev": "0.1.0-beta.21",
+    "@odoo/owl": "^2.4.1",
+    "@types/jquery": "^3.5.32",
+    "@types/luxon": "^3.7.1",
+    "@types/node": "^25.6.0",
+    "oxfmt": "^0.46.0",
+    "oxlint": "^1.61.0",
+    "typescript": "^5.6.3"
+  }
+}

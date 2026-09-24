@@ -1,0 +1,26 @@
+{
+    "name": "{{ name }}",
+    "summary": "TODO: one-sentence description",
+    "version": "19.0.1.0.0",
+    "license": "LGPL-3",
+    "author": "basaltbytes",
+    "website": "https://github.com/basaltbytes/odoo-addons",
+    "category": "Uncategorized",
+    "depends": ["base"],
+    "data": [
+        "security/ir.model.access.csv",
+    ],
+    "demo": [],
+    "assets": {
+        "web.assets_backend": [
+            "{{ name | snake }}/static/src/**/*",
+        ],
+        # Run by tests/test_js.py through web_module_test_harness.
+        "{{ name | snake }}.assets_unit_tests": [
+            "{{ name | snake }}/static/tests/**/*",
+        ],
+    },
+    "installable": True,
+    "application": False,
+    "auto_install": False,
+}

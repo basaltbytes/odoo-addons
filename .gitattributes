@@ -1,0 +1,7 @@
+# Gettext translation files collide constantly when several PRs each append to the
+# same sorted catalog. Resolve them with a union merge driver (scripts/git-merge-po.sh)
+# so rebases/merges stop conflicting on .po/.pot. The driver is configured locally by
+# `pnpm install` (the `prepare` script) or `pnpm run setup:git`; without it, git falls
+# back to the normal line-based merge.
+*.po  merge=odoo-po
+*.pot merge=odoo-po

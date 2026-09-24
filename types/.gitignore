@@ -1,0 +1,3 @@
+# Synced from Odoo upstream by `pnpm sync:odoo-types`. Not committed; CI runs
+# the sync as a setup step.
+odoo-upstream/

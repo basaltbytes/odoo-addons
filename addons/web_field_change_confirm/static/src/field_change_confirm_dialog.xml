@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="web_field_change_confirm.FieldChangeConfirmDialog">
+        <Dialog title.translate="Confirm changes" size="'md'">
+            <p>Saving will change these sensitive fields:</p>
+            <table class="table table-sm align-middle mb-0 o_field_change_confirm_table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Before</th>
+                        <th class="text-center" aria-hidden="true" />
+                        <th>After</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        t-foreach="props.changes"
+                        t-as="change"
+                        t-key="change.name"
+                        t-att-data-field="change.name"
+                    >
+                        <td class="fw-bold" t-esc="change.label" />
+                        <t t-if="change.before === null">
+                            <td colspan="3" class="fst-italic">Modified</td>
+                        </t>
+                        <t t-else="">
+                            <td class="o_field_change_confirm_before">
+                                <t t-if="change.before" t-esc="change.before" />
+                                <span t-else="" class="text-muted fst-italic">Empty</span>
+                            </td>
+                            <td class="text-center" aria-hidden="true">→</td>
+                            <td class="o_field_change_confirm_after">
+                                <t t-if="change.after" t-esc="change.after" />
+                                <span t-else="" class="text-muted fst-italic">Empty</span>
+                            </td>
+                        </t>
+                    </tr>
+                </tbody>
+            </table>
+            <t t-set-slot="footer">
+                <button class="btn btn-primary o_field_change_confirm_save" t-on-click="onConfirm">
+                    Save
+                </button>
+                <button class="btn btn-secondary o_field_change_confirm_back" t-on-click="onCancel">
+                    Back to the form
+                </button>
+            </t>
+        </Dialog>
+    </t>
+</templates>

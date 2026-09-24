@@ -1,0 +1,6 @@
+interface:
+  display_name: "Odoo 19 JS Testing"
+  short_description: "Write Odoo 19 JS tests with Hoot and mock server"
+  default_prompt:
+    "Use $odoo-19-javascript-testing to write or debug an Odoo 19 frontend test for an
+    Owl component, WebClient flow, or mocked RPC interaction."

@@ -1,0 +1,20 @@
+{
+  "bracketSpacing": false,
+  "printWidth": 88,
+  "proseWrap": "always",
+  "semi": true,
+  "trailingComma": "es5",
+  "sortPackageJson": false,
+  "ignorePatterns": [
+    "**/static/lib/**",
+    "**/static/src/lib/**",
+    "addons/odoo_test_xmlrunner/**",
+    "types/odoo-upstream/**",
+    "addons/*/README.rst",
+    "addons/*/static/description/index.html",
+    ".agents/**",
+    ".claude/**",
+    ".odoo/**",
+    ".odoo-agentic-dev/**"
+  ]
+}

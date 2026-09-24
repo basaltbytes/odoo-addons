@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "allowJs": true,
+    "checkJs": false,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@bus/*": ["../odoo/addons/bus/static/src/*"],
+      "@html_editor/*": ["../odoo/addons/html_editor/static/src/*"],
+      "@web/*": ["../odoo/addons/web/static/src/*"],
+      "@web/../tests/*": ["../odoo/addons/web/static/tests/*"],
+      "@web_tour/*": ["../odoo/addons/web_tour/static/src/*"],
+      "@website/*": ["../odoo/addons/website/static/src/*"],
+      "@odoo/hoot": ["../odoo/addons/web/static/lib/hoot/hoot.js"],
+      "@odoo/hoot-dom": ["../odoo/addons/web/static/lib/hoot-dom/hoot-dom.js"],
+      "@odoo/hoot-mock": ["../odoo/addons/web/static/lib/hoot/hoot-mock.js"]
+    }
+  },
+  "include": [
+    "**/static/src/**/*.js",
+    "**/static/tests/**/*.js",
+    "scripts/**/*.mjs",
+    "types/**/*.d.ts"
+  ],
+  "exclude": ["node_modules", "vendor", "**/static/lib"]
+}

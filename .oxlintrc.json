@@ -1,0 +1,168 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "env": {
+    "browser": true,
+    "es2019": true
+  },
+  "globals": {
+    "_": "readonly",
+    "$": "readonly",
+    "fuzzy": "readonly",
+    "jQuery": "readonly",
+    "luxon": "readonly",
+    "moment": "readonly",
+    "odoo": "readonly",
+    "openerp": "readonly",
+    "owl": "readonly"
+  },
+  "ignorePatterns": [
+    "**/static/lib/**",
+    "addons/odoo_test_xmlrunner/**",
+    "node_modules/**",
+    "types/odoo-upstream/**",
+    ".agents/**",
+    ".claude/**",
+    ".odoo/**",
+    ".odoo-agentic-dev/**"
+  ],
+  "rules": {
+    "accessor-pairs": "error",
+    "array-callback-return": "error",
+    "capitalized-comments": [
+      "error",
+      "always",
+      {
+        "ignoreConsecutiveComments": true,
+        "ignoreInlineComments": true
+      }
+    ],
+    "complexity": ["error", 15],
+    "constructor-super": "error",
+    "dot-notation": "error",
+    "eqeqeq": "error",
+    "global-require": "error",
+    "handle-callback-err": "error",
+    "init-declarations": "error",
+    "max-depth": "error",
+    "max-nested-callbacks": "error",
+    "no-alert": "error",
+    "no-array-constructor": "error",
+    "no-caller": "error",
+    "no-case-declarations": "error",
+    "no-class-assign": "error",
+    "no-cond-assign": "error",
+    "no-const-assign": "error",
+    "no-constant-condition": "error",
+    "no-control-regex": "error",
+    "no-debugger": "error",
+    "no-delete-var": "error",
+    "no-div-regex": "error",
+    "no-dupe-class-members": "error",
+    "no-dupe-keys": "error",
+    "no-duplicate-case": "error",
+    "no-duplicate-imports": "error",
+    "no-else-return": "error",
+    "no-empty-character-class": "error",
+    "no-empty-function": "error",
+    "no-empty-pattern": "error",
+    "no-empty": "error",
+    "no-eq-null": "error",
+    "no-eval": "error",
+    "no-ex-assign": "error",
+    "no-extend-native": "error",
+    "no-extra-bind": "error",
+    "no-extra-boolean-cast": "error",
+    "no-extra-label": "error",
+    "no-fallthrough": "error",
+    "no-func-assign": "error",
+    "no-global-assign": "error",
+    "no-implicit-coercion": [
+      "error",
+      {
+        "allow": ["~"]
+      }
+    ],
+    "no-implied-eval": "error",
+    "no-inner-declarations": "error",
+    "no-invalid-regexp": "error",
+    "no-irregular-whitespace": "error",
+    "no-iterator": "error",
+    "no-label-var": "error",
+    "no-labels": "error",
+    "no-lone-blocks": "error",
+    "no-lonely-if": "error",
+    "no-multi-str": "error",
+    "no-negated-condition": "error",
+    "no-new-func": "error",
+    "no-new-require": "error",
+    "no-new-wrappers": "error",
+    "no-new": "error",
+    "no-obj-calls": "error",
+    "no-param-reassign": "error",
+    "no-path-concat": "error",
+    "no-process-env": "error",
+    "no-process-exit": "error",
+    "no-proto": "error",
+    "no-prototype-builtins": "error",
+    "no-redeclare": "error",
+    "no-regex-spaces": "error",
+    "no-restricted-globals": "error",
+    "no-restricted-imports": "error",
+    "no-return-assign": "error",
+    "no-script-url": "error",
+    "no-self-assign": "error",
+    "no-self-compare": "error",
+    "no-sequences": "error",
+    "no-shadow-restricted-names": "error",
+    "no-shadow": "error",
+    "no-sparse-arrays": "error",
+    "no-this-before-super": "error",
+    "no-throw-literal": "error",
+    "no-undef": "error",
+    "no-unmodified-loop-condition": "error",
+    "no-unneeded-ternary": "error",
+    "no-unreachable": "error",
+    "no-unsafe-finally": "error",
+    "no-unused-expressions": "error",
+    "no-unused-labels": "error",
+    "no-unused-vars": "error",
+    "no-use-before-define": "error",
+    "no-useless-call": "error",
+    "no-useless-computed-key": "error",
+    "no-useless-concat": "error",
+    "no-useless-constructor": "error",
+    "no-useless-escape": "error",
+    "no-useless-rename": "error",
+    "no-void": "error",
+    "no-with": "error",
+    "operator-assignment": ["error", "always"],
+    "prefer-const": "error",
+    "radix": "error",
+    "require-yield": "error",
+    "use-isnan": "error",
+    "valid-typeof": "error",
+    "yoda": "error",
+    "max-lines-per-function": [
+      "error",
+      {
+        "max": 150
+      }
+    ],
+    "max-lines": [
+      "error",
+      {
+        "max": 1000
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["**/static/tests/**/*.js"],
+      "rules": {
+        "no-empty-function": "off",
+        "max-lines": "off",
+        "max-lines-per-function": "off"
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+from . import test_{{ name | snake }}
+from . import test_js

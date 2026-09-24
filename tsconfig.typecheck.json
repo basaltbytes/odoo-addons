@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "checkJs": true,
+    "paths": {
+      "@odoo/owl": ["./types/odoo_owl"]
+    }
+  }
+}

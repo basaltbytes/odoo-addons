@@ -1,0 +1,36 @@
+{
+  // Set "python.defaultInterpreterPath" in your user/workspace settings to point at
+  // the Python venv you use for Odoo (matches `.python-version`). Pylance picks it
+  // up automatically when you open the folder.
+  "python.analysis.enableEditableInstalls": true,
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/addons",
+    "${workspaceFolder}/../odoo",
+    "${workspaceFolder}/../odoo/addons"
+  ],
+  "python.analysis.typeCheckingMode": "off",
+  "python.analysis.diagnosticMode": "openFilesOnly",
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportMissingImports": "none",
+    "reportMissingModuleSource": "none"
+  },
+  "python.analysis.exclude": [
+    "**/__pycache__",
+    "**/.venv",
+    "**/.ruff_cache",
+    "**/.mypy_cache",
+    "addons/odoo_test_xmlrunner",
+    "**/static/lib",
+    "**/static/description"
+  ],
+  "pylint.enabled": false,
+  "flake8.enabled": false,
+  "mypy-type-checker.enabled": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.ruff": "explicit",
+    "source.organizeImports.ruff": "explicit"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  }
+}

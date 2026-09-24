@@ -1,0 +1,57 @@
+exclude: |
+  (?x)(
+    /static/(src/)?lib/|
+    /static/description/|
+    ^addons/odoo_test_xmlrunner/|
+    ^\.agents/|
+    ^\.claude/|
+    ^\.odoo/|
+    ^types/odoo-upstream/
+  )
+
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.2
+    hooks:
+      - id: ruff
+        args: [--fix]
+        files: ^addons/.*\.py$
+      - id: ruff-format
+        files: ^addons/.*\.py$
+
+  - repo: https://github.com/OCA/odoo-pre-commit-hooks
+    rev: v0.1.7
+    hooks:
+      - id: oca-checks-odoo-module
+        files: ^addons/
+      - id: oca-checks-po
+        files: ^addons/.*\.(po|pot)$
+
+  - repo: https://github.com/OCA/pylint-odoo
+    rev: v9.3.22
+    hooks:
+      - id: pylint_odoo
+        name: pylint-odoo (optional)
+        args: [--rcfile=.pylintrc, --exit-zero]
+        files: ^addons/.*\.py$
+        stages: [manual]
+
+  - repo: local
+    hooks:
+      - id: oca-gen-addon-readme
+        name: Regenerate addon READMEs from readme/ fragments
+        language: system
+        entry: pnpm run gen:readme
+        pass_filenames: false
+        files: ^addons/[^/]+/(readme/.*|__manifest__\.py)$
+      - id: oxfmt
+        name: oxfmt (autofix JS / SCSS / MD / JSON)
+        language: system
+        entry: node scripts/run-oxfmt.mjs
+        types_or: [javascript, jsx, ts, tsx, scss, markdown, json]
+      - id: oxlint
+        name: oxlint (autofix JS / TS)
+        language: system
+        entry: pnpm exec oxlint --fix
+        types_or: [javascript, jsx, ts, tsx]
+        files: ^(addons|scripts)/

@@ -1,0 +1,10 @@
+[MASTER]
+load-plugins=pylint_odoo
+jobs=1
+
+[MESSAGES CONTROL]
+disable=all
+enable=odoolint
+
+[ODOOLINT]
+valid-odoo-versions=19.0

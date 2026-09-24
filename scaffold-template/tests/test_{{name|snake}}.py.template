@@ -1,0 +1,7 @@
+from odoo.tests.common import TransactionCase
+
+
+class Test{{ name | pascal }}(TransactionCase):
+    def test_smoke(self):
+        """Module installs cleanly and the test bundle runs."""
+        self.assertTrue(self.env)

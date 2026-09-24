@@ -1,0 +1,23 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      lint-and-format:
+        patterns:
+          - "oxlint"
+          - "oxfmt"
+      types:
+        patterns:
+          - "@types/*"
+          - "@odoo/owl"
+          - "typescript"
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
