@@ -12,4 +12,4 @@ versions follow Odoo's `19.0.x.y.z` scheme in each manifest.
 - `web_field_change_confirm`: flag form fields with `confirm_change="<expression>"` to
   confirm, with before and after values, any save that changes them.
 - `web_module_test_harness`: run one addon's Hoot suite from a Python test.
-- `odoo_test_xmlrunner` (OCA, vendored): JUnit XML test reports.
+- `odoo_test_xmlrunner` (OCA 18.0 addon, ported to 19.0): JUnit XML test reports.

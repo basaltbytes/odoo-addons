@@ -8,11 +8,11 @@ workflows. `CLAUDE.md` is a symlink to this file.
 
 - `addons/<addon>/` — one folder per addon. Odoo discovers manifests one level below
   `addons/`, which is the only folder mounted into the Odoo container.
-- Authored: `web_field_change_confirm`, `web_module_test_harness`. Vendored, kept
-  byte-identical to upstream and excluded from every linter and formatter:
-  `odoo_test_xmlrunner` (OCA). A new vendored addon joins the exclude lists in
-  `.pre-commit-config.yaml`, `.ruff.toml`, `.oxlintrc.json`, `.oxfmtrc.json` and
-  `scripts/gen-addon-readmes.mjs`.
+- Authored: `web_field_change_confirm`, `web_module_test_harness`. Vendored, excluded
+  from every linter and formatter: `odoo_test_xmlrunner`, a 19.0 port of OCA's 18.0
+  addon (OCA/server-tools); keep changes to what the port needs. A new vendored addon
+  joins the exclude lists in `.pre-commit-config.yaml`, `.ruff.toml`, `.oxlintrc.json`,
+  `.oxfmtrc.json` and `scripts/gen-addon-readmes.mjs`.
 - `scaffold-template/` — `odoo-bin scaffold -t` template for a new addon.
 - `types/` — hand-written type overlays; `types/odoo-upstream/` is synced by
   `pnpm sync:odoo-types`, never committed.
