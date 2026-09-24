@@ -293,9 +293,8 @@ async function fetchRemoteTypeFileList(sha) {
   const tree = await fetchJson(
     `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/git/trees/${sha}?recursive=1`
   );
-  const entries = /** @type {{ tree?: Array<{ path: string, type: string }> }} */ (
-    tree
-  ).tree || [];
+  const entries =
+    /** @type {{ tree?: Array<{ path: string, type: string }> }} */ (tree).tree || [];
   return entries
     .filter((entry) => entry.type === "blob")
     .map((entry) => entry.path)
