@@ -19,6 +19,9 @@ workflows. `CLAUDE.md` is a symlink to this file.
 
 Commands live in `package.json` scripts. Run them from the repo root with pnpm; keep the
 pnpm (`packageManager`), Node (`.node-version`) and pyenv (`.python-version`) pins.
+`pnpm-workspace.yaml` makes pnpm resolve only versions at least 3 days old, the same
+gate as Dependabot's cooldown; after deleting `node_modules` and the lockfile,
+`pnpm install` re-resolves under it.
 
 ## Definition of done
 

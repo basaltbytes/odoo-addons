@@ -7,6 +7,12 @@ versions follow Odoo's `19.0.x.y.z` scheme in each manifest.
 
 ## [Unreleased]
 
+### Changed
+
+- pnpm resolves only versions published at least 3 days ago (`pnpm-workspace.yaml`),
+  matching Dependabot's cooldown, so Dependabot npm updates stop failing on young
+  lockfile entries.
+
 ### Added
 
 - `web_field_change_confirm`: flag form fields with `confirm_change="<expression>"` to
