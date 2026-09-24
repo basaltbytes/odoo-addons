@@ -172,6 +172,16 @@ function countByType(failingCases, type) {
   return failingCases.filter((failCase) => failCase.type === type).length;
 }
 
+function markdownSummaryLine(reportSuites, failingCases, totals) {
+  const failCount = countByType(failingCases, "FAIL");
+  const errCount = countByType(failingCases, "ERROR");
+  const tail = `across ${reportSuites.length} suites (${totals.tests} tests)`;
+  if (failingCases.length === 0) {
+    return `All green — 0 failed, 0 error(s) ${tail}.`;
+  }
+  return `${failCount} failed, ${errCount} error(s) ${tail}.`;
+}
+
 // Failures come first: on CI the suite list runs to a hundred lines and the one
 // traceback that matters must not sit below it.
 function printConsole(reportSuites, failingCases, totals) {
@@ -215,16 +225,6 @@ function printAnnotations(failingCases) {
 // Escape a Markdown table/summary cell: neutralise the pipe that would split a row.
 function mdCell(text) {
   return text.replace(/\|/g, "\\|");
-}
-
-function markdownSummaryLine(reportSuites, failingCases, totals) {
-  const failCount = countByType(failingCases, "FAIL");
-  const errCount = countByType(failingCases, "ERROR");
-  const tail = `across ${reportSuites.length} suites (${totals.tests} tests)`;
-  if (failingCases.length === 0) {
-    return `All green — 0 failed, 0 error(s) ${tail}.`;
-  }
-  return `${failCount} failed, ${errCount} error(s) ${tail}.`;
 }
 
 function failureDetails(failCase) {

@@ -1,0 +1,6 @@
+# Resolve only package versions published at least 3 days ago (in minutes). Supply-chain
+# guard, and it keeps pnpm-lock.yaml inside Dependabot's release-age gate
+# (--config.minimumReleaseAge=4320, the cooldown in .github/dependabot.yml): a younger
+# version in the lockfile makes every Dependabot npm update fail with
+# ERR_PNPM_MINIMUM_RELEASE_AGE_VIOLATION. Change both values together.
+minimumReleaseAge: 4320

@@ -4,6 +4,10 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
+    # Matches minimumReleaseAge in pnpm-workspace.yaml (3 days = 4320 minutes): the
+    # lockfile must never hold a version younger than this gate. Change both together.
+    cooldown:
+      default-days: 3
     open-pull-requests-limit: 5
     groups:
       lint-and-format:
