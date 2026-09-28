@@ -1,9 +1,7 @@
-- Only form views ask for confirmation. Inline editing in a list view and drag and drop
-  in a kanban view save without a dialog.
-- The attribute has no effect on one2many and many2many fields, because the dialog can't
-  show a list of lines before and after the change.
-- A line of a one2many or many2many field opened in its own dialog is saved with its
-  parent record, without confirmation.
-- The dialog is a check for the user, not a security feature. Imports, RPC calls and
-  server actions write without it. Use constraints or access rights on the server for
-  rules that must always apply.
+- Only form views show the dialog. Inline editing in list views and drag and drop in
+  kanban views save without confirmation.
+- The attribute is ignored on one2many and many2many fields.
+- Creating a record doesn't show the dialog.
+- For binary, HTML, JSON and properties fields, the dialog shows "Modified" instead of
+  the values.
+- Imports, RPC calls and server actions don't show the dialog.

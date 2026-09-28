@@ -1,6 +1,6 @@
-The examples below add Hoot tests to an addon named `my_addon`.
+To run the Hoot tests of an addon, `my_addon` in these examples, you need to:
 
-Declare the tests in a bundle named `my_addon.assets_unit_tests`, in the manifest of
+Declare the tests in a `my_addon.assets_unit_tests` bundle, in the manifest of
 `my_addon`:
 
 ```python
@@ -11,7 +11,7 @@ Declare the tests in a bundle named `my_addon.assets_unit_tests`, in the manifes
 },
 ```
 
-Add a test class that inherits from `ModuleHootCase`, and import its file in
+Add a test class that inherits from `ModuleHootCase`, and import it in
 `tests/__init__.py`:
 
 ```python
@@ -25,8 +25,7 @@ class TestMyAddonHoot(ModuleHootCase):
     module_name = "my_addon"
 ```
 
-`my_addon` doesn't need `web_module_test_harness` in its `depends`, but the harness must
-be installed in the test database. Run the tests with:
+Install `web_module_test_harness` in the test database, then run:
 
 ```bash
 odoo-bin -d <db> --test-enable --stop-after-init \
@@ -34,13 +33,12 @@ odoo-bin -d <db> --test-enable --stop-after-init \
   --test-tags /my_addon:TestMyAddonHoot
 ```
 
-To run the tests in the Hoot interface, log in and open `/web/module_tests/my_addon`.
-The page returns a 404 error if `my_addon` isn't installed or has no
-`my_addon.assets_unit_tests` bundle.
+To run the tests in the browser, open `/web/module_tests/my_addon`. The page returns a
+404 error if `my_addon` isn't installed or has no `my_addon.assets_unit_tests` bundle.
 
 ## Test class attributes
 
-`module_name`: the addon whose tests the class runs. Required unless you set `route`.
+`module_name`: the addon whose tests the class runs. Required unless `route` is set.
 
 `route`: the URL to open instead of `/web/module_tests/<module_name>`.
 
@@ -53,9 +51,9 @@ The page returns a 404 error if `my_addon` isn't installed or has no
 `hoot_retries`: how many times the class runs the tests again after a failure. Default:
 `2`.
 
-## Keep the tests in `/web/tests`
+## Run the tests in `/web/tests` too
 
-To also run the tests of `my_addon` in Odoo's `/web/tests` page, include its bundle in
+To also run the tests in Odoo's `/web/tests` page, include the bundle in
 `web.assets_unit_tests`:
 
 ```python
