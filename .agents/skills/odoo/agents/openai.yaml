@@ -1,0 +1,4 @@
+interface:
+  display_name: "Odoo"
+  short_description: "Route Odoo work to backend, frontend, OWL, or JS testing skills"
+  default_prompt: "Use $odoo when an Odoo task is broad or spans backend Python, web-client JavaScript, OWL components, XML views, or frontend tests."

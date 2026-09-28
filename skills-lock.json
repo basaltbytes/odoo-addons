@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "skills": {
+    "anti-slop-writing": {
+      "source": "basaltbytes/skills",
+      "sourceType": "github",
+      "skillPath": "skills/anti-slop-writing/SKILL.md",
+      "computedHash": "d499e53d695ff4a3591f5f7de39257d9c2e2ccdfaecc14c701d9d64431c72d6f"
+    },
+    "coding-guidelines": {
+      "source": "basaltbytes/skills",
+      "sourceType": "github",
+      "skillPath": "skills/coding-guidelines/SKILL.md",
+      "computedHash": "bc261f9ef04372e4989f643a8f0e8a7b7e4ddba52859f467698b0b44ff8c31c3"
+    },
+    "odoo": {
+      "source": "basaltbytes/skills",
+      "sourceType": "github",
+      "skillPath": "skills/odoo/SKILL.md",
+      "computedHash": "e82a4c074f7a2bcd4994bf250f1005cf022326634d30716025163b2b932183b7"
+    },
+    "odoo-backend": {
+      "source": "basaltbytes/skills",
+      "sourceType": "github",
+      "skillPath": "skills/odoo-backend/SKILL.md",
+      "computedHash": "88151502a9a8d63775823174ed13b8a8b77aa9cce4175d593d7a1de7222fa62a"
+    },
+    "odoo-frontend": {
+      "source": "basaltbytes/skills",
+      "sourceType": "github",
+      "skillPath": "skills/odoo-frontend/SKILL.md",
+      "computedHash": "daf13f897fb84ae0fc64cae128dce839ab01a534bc036261b1e7af1c0b14a35a"
+    },
+    "owl": {
+      "source": "basaltbytes/skills",
+      "sourceType": "github",
+      "skillPath": "skills/owl/SKILL.md",
+      "computedHash": "6b21107240c6c92db2b365bdf476fee149c8408e0d3f2346d554141253fa66a3"
+    }
+  }
+}
