@@ -2,11 +2,11 @@
 
 Reusable addons for Odoo 19 Community.
 
-| Addon                                                                            | Summary                                                                                              |
-| -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| [`web_field_change_confirm`](addons/web_field_change_confirm)                    | Ask for confirmation, with before and after values, before saving a change to a sensitive form field |
-| [`web_module_test_harness`](addons/web_module_test_harness)                      | Run one addon's Hoot test suite from a Python test                                                   |
-| [`odoo_test_xmlrunner`](addons/odoo_test_xmlrunner) _(OCA 18.0, ported to 19.0)_ | JUnit XML reports for Odoo test runs                                                                 |
+| Addon                                                                            | Summary                                                                                    |
+| -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| [`web_field_change_confirm`](addons/web_field_change_confirm)                    | Show the old and new values of selected form fields and ask for confirmation before saving |
+| [`web_module_test_harness`](addons/web_module_test_harness)                      | Run the Hoot tests of a single addon from a Python test                                    |
+| [`odoo_test_xmlrunner`](addons/odoo_test_xmlrunner) _(OCA 18.0, ported to 19.0)_ | Write JUnit XML reports of Odoo test runs                                                  |
 
 Each addon documents its configuration and usage in its own `README.rst`.
 

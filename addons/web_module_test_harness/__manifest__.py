@@ -1,6 +1,6 @@
 {
     "name": "Web Module Test Harness",
-    "summary": "Module-scoped Hoot test runner for Odoo 19 addons",
+    "summary": "Run the Hoot tests of a single addon from a Python test",
     "version": "19.0.1.0.0",
     "license": "LGPL-3",
     "author": "basaltbytes",

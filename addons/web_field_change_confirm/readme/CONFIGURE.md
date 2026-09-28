@@ -1,21 +1,23 @@
-Add the `confirm_change` attribute to a `<field>` of a form view. Its value is a Python
-expression, evaluated on the record like `readonly` or `invisible`:
+Add `confirm_change` to a `<field>` of a form view. The value is a Python expression,
+like the value of `readonly` or `invisible`. Odoo evaluates it with the values on the
+form at the moment the user saves, and asks for confirmation only if it's true.
 
 ```xml
 <!-- Always ask -->
 <field name="partner_id" confirm_change="1"/>
 
-<!-- Ask only once the order is confirmed -->
-<field name="partner_id" confirm_change="state in ('sale', 'done')"/>
+<!-- Ask only on confirmed orders -->
+<field name="partner_id" confirm_change="state == 'sale'"/>
 ```
 
-On an existing view, set it through inheritance:
+To set it on a field of an existing view, inherit the view:
 
 ```xml
 <xpath expr="//field[@name='partner_id']" position="attributes">
-    <attribute name="confirm_change">state in ('sale', 'done')</attribute>
+    <attribute name="confirm_change">state == 'sale'</attribute>
 </xpath>
 ```
 
-Fields read by the expression are added to the view automatically when missing, and an
-invalid expression is rejected when the view is saved, as for `readonly`.
+Odoo checks the expression when it saves the view and rejects an invalid one. If the
+expression uses a field that isn't in the view, Odoo adds that field to the view as an
+invisible field.

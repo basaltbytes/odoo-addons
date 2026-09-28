@@ -24,12 +24,6 @@ msgstr ""
 #. module: web_field_change_confirm
 #. odoo-javascript
 #: code:addons/web_field_change_confirm/static/src/field_change_confirm_dialog.xml:0
-msgid "Back to the form"
-msgstr ""
-
-#. module: web_field_change_confirm
-#. odoo-javascript
-#: code:addons/web_field_change_confirm/static/src/field_change_confirm_dialog.xml:0
 msgid "Before"
 msgstr ""
 
@@ -64,6 +58,12 @@ msgstr ""
 #. module: web_field_change_confirm
 #. odoo-javascript
 #: code:addons/web_field_change_confirm/static/src/field_change_confirm_dialog.xml:0
+msgid "Keep editing"
+msgstr ""
+
+#. module: web_field_change_confirm
+#. odoo-javascript
+#: code:addons/web_field_change_confirm/static/src/field_change_confirm_dialog.xml:0
 msgid "Modified"
 msgstr ""
 
@@ -82,7 +82,7 @@ msgstr ""
 #. module: web_field_change_confirm
 #. odoo-javascript
 #: code:addons/web_field_change_confirm/static/src/field_change_confirm_dialog.xml:0
-msgid "Saving will change these sensitive fields:"
+msgid "Saving will change the following fields:"
 msgstr ""
 
 #. module: web_field_change_confirm

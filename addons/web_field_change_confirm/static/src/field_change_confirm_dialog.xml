@@ -2,7 +2,7 @@
 <templates xml:space="preserve">
     <t t-name="web_field_change_confirm.FieldChangeConfirmDialog">
         <Dialog title.translate="Confirm changes" size="'md'">
-            <p>Saving will change these sensitive fields:</p>
+            <p>Saving will change the following fields:</p>
             <table class="table table-sm align-middle mb-0 o_field_change_confirm_table">
                 <thead>
                     <tr>
@@ -42,7 +42,7 @@
                     Save
                 </button>
                 <button class="btn btn-secondary o_field_change_confirm_back" t-on-click="onCancel">
-                    Back to the form
+                    Keep editing
                 </button>
             </t>
         </Dialog>

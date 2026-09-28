@@ -1,7 +1,7 @@
 {
     "name": "Field Change Confirmation",
-    "summary": "Ask for confirmation, with before and after values, before saving "
-    "a change to a sensitive form field",
+    "summary": "Show the old and new values of selected form fields and ask for "
+    "confirmation before saving",
     "version": "19.0.1.0.0",
     "license": "LGPL-3",
     "author": "basaltbytes",

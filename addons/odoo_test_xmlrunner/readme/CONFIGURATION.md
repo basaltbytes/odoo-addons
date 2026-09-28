@@ -1,12 +1,13 @@
 Add to your odoo Configuration file:
 
-- **test_result_directory**: The path (created if it does not exist) where the reports
-  will be written to.
+- **test_result_directory**: The path (created if not exists) where the reports will be written to.
 
-19.0 port note (this repository's vendored copy): when **test_result_directory** is not
-set, reports default to a `test_results` folder inside the addons directory that ships
-this module — through the dockerized stack's bind mount that is `addons/test_results/`
-on the host — instead of the upstream default, a folder relative to the Odoo process
-working directory, which is not writable in containerized stacks. When the directory
-cannot be created or written, the module logs a warning and leaves the stock test
-runner untouched instead of breaking the suite.
+## Changes in the 19.0 port
+
+If **test_result_directory** isn't set, the reports go to a `test_results` folder in the
+addons directory that contains this addon. In this repository, that's
+`addons/test_results/`. Upstream, the default is `test_results` in Odoo's working
+directory, which often isn't writable when Odoo runs in a container.
+
+If the addon can't create or write to the report directory, it logs a warning and Odoo
+runs the tests without writing XML reports.
