@@ -48,8 +48,8 @@
     "@basaltbytes/odoo-agentic-dev": "0.1.0-beta.21",
     "@odoo/owl": "^2.4.1",
     "@types/jquery": "^4.0.1",
-    "@types/luxon": "^3.7.1",
-    "@types/node": "^26.6.2",
+    "@types/luxon": "^3.7.6",
+    "@types/node": "^26.6.4",
     "oxfmt": "^0.68.0",
     "oxlint": "^1.61.0",
     "typescript": "^7.0.2"
