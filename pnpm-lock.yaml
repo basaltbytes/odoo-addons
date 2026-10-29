@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@basaltbytes/odoo-agentic-dev':
-        specifier: 0.1.0-beta.21
-        version: 0.1.0-beta.21(redis@6.2.1)
+        specifier: 0.1.0-beta.22
+        version: 0.1.0-beta.22(redis@6.2.1)
       '@odoo/owl':
         specifier: ^2.4.1
         version: 2.8.3
@@ -38,9 +38,9 @@ packages:
   '@asamuzakjp/css-color@3.2.0':
     resolution: {integrity: sha512-K1A6z8tS3XsmCMM86xoWdn7Fkdn9m6RSVtocUrJYIwZnFVkng/PvkEoWtOWmP+Scc6saYWHWZYbndEEXxl24jw==}
 
-  '@basaltbytes/odoo-agentic-dev@0.1.0-beta.21':
-    resolution: {integrity: sha512-C0bppAJzq618zV6KIt75TiwmQs/tPXCMAeAzm0Ns/Qd0nGDRlHSyXtrYLoli8tpkWzyzvS9yKeu6Q6RIDf9LDQ==}
-    engines: {node: ^22.22.2 || >=24.15.0}
+  '@basaltbytes/odoo-agentic-dev@0.1.0-beta.22':
+    resolution: {integrity: sha512-qEY0f+mTeCKU/r8KDDEMzqh/r4Pon/XAPfVca97H4Iycncbu5R4Agx1BTP3Nf2WycvkeUYdwDu5owS4h3eiROQ==}
+    engines: {node: ^22.23.4 || ^24.22.1 || >=26.12.1}
     hasBin: true
 
   '@csstools/color-helpers@5.1.0':
@@ -378,8 +378,8 @@ packages:
   '@types/node@26.6.2':
     resolution: {integrity: sha512-X1P21scMv4zGKLYqjdGjaKa7COa0RKVYYZZN/NfvLQ1JegxFhdhpZG/Lyn8AXx6CDUavKAd11v6BvfpkDByK8g==}
 
-  '@types/ws@8.18.1':
-    resolution: {integrity: sha512-ThVF6DCVhA8kUGy+aazFQ4kXQ7E1Ty7A3ypFOe0IcJV8O/M511G99AW24irKrW56Wt44yG9+ij8FaqoBGkuBXg==}
+  '@types/ws@8.18.2':
+    resolution: {integrity: sha512-67MQl+fpWKVTT1NYdnmo3U4sc/xPo/zQBncVnI74qmQa0z/b+1g6iYqNmGCPbxO+zz2aklb08a0oHfegiVd0/w==}
 
   '@typescript/typescript-aix-ppc64@7.0.2':
     resolution: {integrity: sha512-MTKKkWB7p/0E9xi1d1tHtZ5PiLkGEMIq88pK2CubZjOsLtYTLqhgIgi6zepFa+9GHZ6h05NMCkQxGKiPXMxXtQ==}
@@ -735,8 +735,8 @@ packages:
   undici-types@8.9.0:
     resolution: {integrity: sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg==}
 
-  undici@8.10.2:
-    resolution: {integrity: sha512-/y4/bH9YNU5hi9NIrpOuvGXFcxrj3CMrV+/AYpowAYTpHn8gX/XPFjNy766FPoYY0miQhdW977JFWKGNhBdwyQ==}
+  undici@8.12.3:
+    resolution: {integrity: sha512-+fdndUTwBP86cVjihTp21hZHo7d6oj1c/47XPA3lL8mM0XHs+C4EkcjmgRsFnFk2f/UONGDy9ItBItmXsLOQHw==}
     engines: {node: '>=22.19.0'}
 
   w3c-xmlserializer@5.0.0:
@@ -772,6 +772,18 @@ packages:
       utf-8-validate:
         optional: true
 
+  ws@8.22.0:
+    resolution: {integrity: sha512-Ydggc987+RO0AnWtZ/7Wq9FtNvcrL1b/RO0ud9mWjUPgDrsAAwQSF51sm2hm1XofbU/4jkpGEsLFsZZxU+1DOg==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+
   xml-name-validator@5.0.0:
     resolution: {integrity: sha512-EvGK8EJ3DhaHfbRlETOWAS5pO9MZITeauHKJyb8wyajUfQUenkIg2MvLDTZ4T/TgIcm3HU0TFBgWWboAZ30UHg==}
     engines: {node: '>=18'}
@@ -789,7 +801,7 @@ snapshots:
       '@csstools/css-tokenizer': 3.0.4
       lru-cache: 10.4.3
 
-  '@basaltbytes/odoo-agentic-dev@0.1.0-beta.21(redis@6.2.1)':
+  '@basaltbytes/odoo-agentic-dev@0.1.0-beta.22(redis@6.2.1)':
     dependencies:
       '@effect/platform-node': 4.0.0-rc.113(effect@4.0.0-rc.113)(redis@6.2.1)
       '@effect/platform-node-shared': 4.0.0-rc.113(effect@4.0.0-rc.113)
@@ -822,9 +834,9 @@ snapshots:
 
   '@effect/platform-node-shared@4.0.0-rc.113(effect@4.0.0-rc.113)':
     dependencies:
-      '@types/ws': 8.18.1
+      '@types/ws': 8.18.2
       effect: 4.0.0-rc.113
-      ws: 8.21.3
+      ws: 8.22.0
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -834,7 +846,7 @@ snapshots:
       '@effect/platform-node-shared': 4.0.0-rc.113(effect@4.0.0-rc.113)
       effect: 4.0.0-rc.113
       redis: 6.2.1
-      undici: 8.10.2
+      undici: 8.12.3
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -990,7 +1002,7 @@ snapshots:
     dependencies:
       undici-types: 8.9.0
 
-  '@types/ws@8.18.1':
+  '@types/ws@8.18.2':
     dependencies:
       '@types/node': 26.6.2
 
@@ -1336,7 +1348,7 @@ snapshots:
 
   undici-types@8.9.0: {}
 
-  undici@8.10.2: {}
+  undici@8.12.3: {}
 
   w3c-xmlserializer@5.0.0:
     dependencies:
@@ -1356,6 +1368,8 @@ snapshots:
       webidl-conversions: 7.0.0
 
   ws@8.21.3: {}
+
+  ws@8.22.0: {}
 
   xml-name-validator@5.0.0: {}
 
